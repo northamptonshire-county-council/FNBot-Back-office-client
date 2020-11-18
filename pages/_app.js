@@ -1,8 +1,8 @@
-import '../styles/globals.css'
-import "govuk-frontend/govuk/all.scss";
+import '../styles/main.scss'
 
-function MyApp({ Component, pageProps }) {
+
+function VoiceBotBackOfficeClient({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
 
-export default MyApp
+export default VoiceBotBackOfficeClient
