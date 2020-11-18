@@ -1,12 +1,15 @@
+import { useEffect } from 'react'
 
+export default function Places() {
 
-export default function Places(){
+    //Example from: https://www.codegrepper.com/code-examples/delphi/next+js+componentdidmount+functional+component
+    // replicates functionality of React's 'component did mount'
+    useEffect(() => {
+        window.GOVUKFrontend.initAll()
+    }, []);
+
     return (
         <main>
-        <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-
-            <script src="/all.js"></script>
-
             <div className="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
             <div className="govuk-accordion__section ">
                 <div className="govuk-accordion__section-header">
@@ -57,9 +60,6 @@ export default function Places(){
                 </div>
             </div>
             </div>
-            <script>
-                window.GOVUKFrontend.initAll()
-            </script>
         </main>
     )
 }

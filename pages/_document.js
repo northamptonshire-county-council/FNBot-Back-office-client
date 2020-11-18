@@ -9,13 +9,12 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+        <script src="/all.js"></script>
+        </Head>
         <body className="js-enabled">
           <Main />
           <NextScript />
-          <script>
-                window.GOVUKFrontend.initAll()
-            </script>
         </body>
       </Html>
     )
