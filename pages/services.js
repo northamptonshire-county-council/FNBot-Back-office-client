@@ -9,7 +9,8 @@ export default function Places() {
     }, []);
     
     return (
-        <div id="govuk-main-wrapper">
+        <div class="govuk-width-container">
+        <div id="govuk-main-wrapper--auto-spacing">
             
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-full">
@@ -23,7 +24,7 @@ export default function Places() {
                 {/* Search start */}
                 <div class="govuk-form-group">
                 {/* <label class="govuk-label govuk-label--l" for="event-name" aria-hidden="hidden" style="display: none">Keyword</label> */}
-                    <input class="govuk-input" id="event-name" name="event-name" placeholder="keyword" type="text" />
+                    <input class="govuk-input govuk-input--width-10" id="search-input" name="search-input" type="text" placeholder="keyword" />
                     <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Search</button>
                 </div>
                 </div>
@@ -33,6 +34,7 @@ export default function Places() {
                 </div>
             </div>
             
+
             <div class="govuk-grid-row">
             {/* Table  Start*/}
             <table class="govuk-table">
@@ -57,6 +59,7 @@ export default function Places() {
             {/* Table End */}
 
             </div>
-            </div> /* Wrapper End */
+        </div> {/* Wrapper End */}
+        </div>
         )
     }
