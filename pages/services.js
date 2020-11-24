@@ -1,6 +1,21 @@
 import { useEffect } from 'react'
+import ServiceTableRow from '../components/serviceTableRow'
 
-export default function Places() {
+export async function getServerSideProps(context){
+    const res = await fetch(`https://f75sppsh3l.execute-api.eu-west-2.amazonaws.com/dev/services`)
+    const data = await res.json();
+
+    if(!data){
+        return {
+            notFound: true,
+        }
+    }
+
+    return { props: { data } }
+    
+}
+
+export default function Services({ data }) {
     
     //Example from: https://www.codegrepper.com/code-examples/delphi/next+js+componentdidmount+functional+component
     // replicates functionality of React's 'component did mount'
@@ -11,6 +26,7 @@ export default function Places() {
     return (
         <div class="govuk-width-container">
             <div id="govuk-main-wrapper--auto-spacing">
+            
                 
                 <div class="govuk-grid-row">
                     <div class="govuk-grid-column-full">
@@ -50,12 +66,9 @@ export default function Places() {
                             </tr>
                         </thead>
                         <tbody class="govuk-table__body">
-                            <tr class="govuk-table__row">
-                                <td scope="row" class="govuk-table__cell">Household waste and recycling</td>
-                                <td class="govuk-table__cell">True</td>
-                                <td class="govuk-table__cell">Rubbish, Tip, Waste</td>
-                                <td class="govuk-table__cell"><a href="#" class="govuk-link">Edit</a></td>
-                            </tr>
+                            {data.Items.map((data) => (
+                                <ServiceTableRow data = { data } /> 
+                                ))}
                         </tbody>
                     </table>
                 </div>{/* Table End */}
