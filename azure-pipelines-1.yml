@@ -1,4 +1,5 @@
 # Node.js
+
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
@@ -27,3 +28,10 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
     verbose: true
+- task: S3Upload@1
+  inputs:
+    awsCredentials: 'AWS FN-BOT'
+    regionName: 'eu-west-2'
+    bucketName: 'fn-bot-backoffice-client'
+    globExpressions: '**'
+    sourceFolder: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
