@@ -34,4 +34,3 @@ steps:
     regionName: 'eu-west-2'
     bucketName: 'fn-bot-backoffice-client'
     globExpressions: '**'
-    sourceFolder: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
