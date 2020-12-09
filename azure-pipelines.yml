@@ -24,7 +24,7 @@ steps:
 ##zip it up
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Agent.BuildDirectory)/1/s/dist'
+    rootFolderOrFile: '$(Build.SourcesDirectory)/dist'
     includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
