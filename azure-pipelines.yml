@@ -15,15 +15,27 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+##build it
 - script: |
     npm install
     npm run build
   displayName: 'npm install and build next app'
+
+##zip it up
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    rootFolderOrFile: '$(Agent.BuildDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
 
+##Put it in S3
+- task: S3Upload@1
+  inputs:
+    awsCredentials: 'AWS FN-BOT'
+    regionName: 'eu-west-2'
+    bucketName: 'wills-deploy-bucket'
+    sourceFolder: '$(Build.ArtifactStagingDirectory)'
+    globExpressions: '*.zip'
+    createBucket: true
